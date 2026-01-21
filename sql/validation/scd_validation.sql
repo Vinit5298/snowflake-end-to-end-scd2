@@ -1,0 +1,37 @@
+-- 1. Ensure only ONE current record per customer
+SELECT
+    CUSTOMER_ID,
+    COUNT(*) AS CURRENT_COUNT
+FROM SILVER.SILVER_CUSTOMER
+WHERE IS_CURRENT = TRUE
+GROUP BY CUSTOMER_ID
+HAVING COUNT(*) > 1;
+
+-- EXPECTED RESULT: 0 rows
+
+
+-- 2. Ensure history exists for updated customers
+SELECT
+    CUSTOMER_ID,
+    COUNT(*) AS VERSION_COUNT
+FROM SILVER.SILVER_CUSTOMER
+GROUP BY CUSTOMER_ID
+HAVING COUNT(*) > 1;
+
+-- EXPECTED RESULT: customers with updates appear here
+
+
+-- 3. Ensure effective dates are valid
+SELECT *
+FROM SILVER.SILVER_CUSTOMER
+WHERE EFFECTIVE_START_DT > EFFECTIVE_END_DT;
+
+-- EXPECTED RESULT: 0 rows
+
+
+-- 4. Ensure no NULL business keys
+SELECT *
+FROM SILVER.SILVER_CUSTOMER
+WHERE CUSTOMER_ID IS NULL;
+
+-- EXPECTED RESULT: 0 rows
