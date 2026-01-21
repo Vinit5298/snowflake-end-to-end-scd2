@@ -2,7 +2,7 @@
 
 ## S3 Bucket
 - Bucket Name: snowflake-end-to-end-scd2
-- Region: us-east-1
+- Region: Asia Pacific (Mumbai) ap-south-1
 
 ## Folder Structure
 raw/
