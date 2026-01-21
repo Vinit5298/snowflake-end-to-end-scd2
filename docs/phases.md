@@ -47,4 +47,9 @@
 - CDC data ingested via incremental JSON files from S3
 - Validated historical tracking and current-state correctness
 
-Further phases are added incrementally.
+## Phase 6 – ANALYTICS Layer (Gold)
+
+- BI-ready analytics schema
+- DIM_CUSTOMER view built on SILVER SCD table
+- Read-optimized warehouse (BI_WH)
+- No transformation logic
