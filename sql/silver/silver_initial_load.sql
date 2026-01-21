@@ -1,0 +1,36 @@
+Insert Into Silver.Silver_Customer (
+    Customer_Id,
+    Customer_Name,
+    Email_Id,
+    Phone_Number,
+    City,
+    State,
+    Country,
+    Customer_Segment,
+    Credit_Rating,
+    Customer_Status,
+    Source_System,
+    Record_Hash,
+    Effective_Start_Dt,
+    Effective_End_Dt,
+    Is_Current,
+    Load_Timestamp
+)
+Select
+    Customer_Id,
+    Customer_Name,
+    Email_Id,
+    Phone_Number,
+    City,
+    State,
+    Country,
+    Customer_Segment,
+    Credit_Rating,
+    Customer_Status,
+    Source_System,
+    Record_Hash,
+    Current_Date,
+    '9999-12-31',
+    True,
+    Current_Timestamp
+From Bronze.Bronze_Customer;
