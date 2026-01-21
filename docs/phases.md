@@ -23,4 +23,28 @@
 - Historical load using COPY INTO
 - Metadata capture (filename, row number)
 
+## Phase 4 – BRONZE Layer (Standardization)
+- Structured relational table (BRONZE.BRONZE_CUSTOMER)
+- Extracted fields from RAW JSON payload
+- Standardized data types
+- Record hash preserved for change detection
+- Snowflake STREAM on RAW table (append-only)
+- Event-driven TASK (RAW_TO_BRONZE_CUSTOMER_TASK)
+- Automated ingestion from RAW → BRONZE
+- Validated 1.5M records successfully loaded
+
+## Phase 5 – SILVER Layer (SCD Type 2 with CDC)
+- Customer dimension table (SILVER.SILVER_CUSTOMER)
+- Surrogate key (CUSTOMER_SK) with business key (CUSTOMER_ID)
+- Initial load from BRONZE
+- Snowflake STREAM on BRONZE table for CDC
+- SCD Type 2 MERGE logic:
+- Close old records on change
+- Insert new version with updated attributes
+- Effective date tracking (EFFECTIVE_START_DT, EFFECTIVE_END_DT)
+- Current record indicator (IS_CURRENT)
+- Automated TASK (BRONZE_TO_SILVER_CUSTOMER_TASK)
+- CDC data ingested via incremental JSON files from S3
+- Validated historical tracking and current-state correctness
+
 Further phases are added incrementally.
