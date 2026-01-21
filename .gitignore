@@ -17,3 +17,15 @@ Thumbs.db
 # Large generated data files
 data/generated/*.json
 *.json
+
+# Data files
+*.json
+data/
+data/generated/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment
+.env
